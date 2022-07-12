@@ -22,6 +22,10 @@ The mapper will change dictory into each folder and run the simulation as it ite
 Settings.yaml provides the settings used by the mapper. See IO.py for more information
 about what settings can be provided.
 
+htc_map_64 is the binary provided by CONVERGE that maps heat transfer data between
+the two simulations. This binary does not need to be include in the simulation
+folder, but if it isn't, its location must be included in PATH.
+
 htcRunInfo.yaml is used by the mapper function to track current progress in the event
 that it is restarted. This file is not needed when starting a new CHT simulation, but if
 restarting, it must be included for the mapper to be able to determine how to restart.
@@ -32,7 +36,7 @@ the heat transfer information between simulations. Any name can be used for this
 it must be specified in settings.yaml using the 'mapSurfaceFile' keyword.
 
 These python files can be stored anywhere, but the location of runHTC.py must be added to
-the path along with the converge binaries. Assuming that runHTC.py is in the path,
+PATH along with the converge binaries. Assuming that runHTC.py is in PATH,
 the iterative mapper can be started by a SLURM batch script with the line python runHTC.py.
 It will automatically determine if the simulation is new, or if it is being restarted based
 on the existance of htcRunInfo.yaml and output files in the coolant/combustion folder. Currently
